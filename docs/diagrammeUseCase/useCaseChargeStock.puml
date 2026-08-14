@@ -1,0 +1,90 @@
+@startuml UseCase_Admin
+left to right direction
+
+actor "charger de Stock" as CS
+
+rectangle "StoreManager Pro" {
+
+' VENTES
+
+    ' APPROVISIONNEMENTS
+
+    usecase "Approvisionnements" as UCP4
+
+        usecase "statistique appro" as UC9
+
+        usecase "Bordereaux de livraison" as UC10
+            
+            usecase "Lister appros" as UC101
+                usecase "ligne" as UC1011
+                    usecase "lister un appro" as UC10111
+                usecase "reception" as UC1012
+                    usecase "lister reception" as UC10121
+                      usecase "valider reception" as UC101211
+                    
+
+    ' PRODUITS ET TIERS
+
+    usecase "Catalogue et tiers" as UCP5
+
+        usecase "afficher statistique" as UC11
+        usecase "gestion" as UC12
+
+            usecase "Gérer les produits" as UC121
+                usecase "Ajouter un produit" as UC1211
+                usecase "lister catalogue" as UC1212
+          
+
+            usecase "Gérer les clients" as UC122
+                usecase "Ajouter un client" as UC1221
+                usecase "lister repertoir client" as UC1222
+         
+
+            usecase "Gérer les fournisseurs" as UC123
+                usecase "Ajouter un fournisseur" as UC1231
+                usecase "repertoir fournisseur" as UC1232
+         
+
+
+    ' DECONNEXION
+
+    usecase "Déconnexion" as UCP6
+}
+
+CS --> UCP4
+CS --> UCP5
+CS --> UCP6
+
+' APPROVISIONNEMENTS
+
+
+UCP4 ..> UC9 : <<include>>
+UCP4 ..> UC10 : <<include>>
+UC10 ..> UC101 : <<include>>
+UC101 ..> UC1011: <<include>>
+UC101 ..> UC1012: <<include>>
+UC1011 ..> UC10111: <<include>>
+UC1012 ..> UC10121: <<include>>
+UC10121 <.. UC101211 : <<extend>>
+
+
+
+
+' PRODUIT ET TIERS
+
+
+UCP5 ..> UC11 : <<include>>
+UCP5 ..> UC12 : <<include>>
+UC12 <-- UC121
+UC121 <.. UC1211 : <<extend>>
+UC121 <.. UC1212 : <<extend>>
+UC12 <-- UC122
+UC122 <.. UC1221 : <<extend>>
+UC122 <.. UC1222 : <<extend>>
+UC12 <-- UC123
+UC123 <.. UC1231 : <<extend>>
+UC123 <.. UC1232 : <<extend>>
+
+
+
+@enduml

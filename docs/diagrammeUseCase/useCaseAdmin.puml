@@ -1,0 +1,244 @@
+@startuml UseCase_Admin
+left to right direction
+
+actor "Admin" as Admin
+
+rectangle "StoreManager Pro" {
+
+    usecase "Authentification" as A
+
+    
+    ' TABLEAU DE BORD
+
+    usecase "Tableau de bord" as UCP1
+        usecase "Afficher statistiques" as UC1
+
+        usecase "Suivre ventes, dettes du jour, rupture" as UC2
+            usecase "Lister ventes récentes" as UC21
+            usecase "Lister dettes du jour" as UC22
+                usecase "Action" as UC221
+            usecase "Rupture stock" as UC23
+                usecase "Approvisionner" as UC231
+                    usecase "Lister commandes appro" as UC2311
+                        usecase "Valider" as UC23111
+
+        usecase "Livraison, client, solde" as UC3
+            usecase "Livraison du jour" as UC31
+                usecase "Action" as UC311
+
+            usecase "Client débiteur" as UC32
+                usecase "Dette" as UC321
+                    usecase "Lister dettes client" as UC3211
+                        usecase "Remboursement" as UC32111
+
+            usecase "Solde fournisseur" as UC33
+                usecase "Détail" as UC331
+                    usecase "Lister factures de règlement" as UC3311
+                        usecase "Action" as UC33111
+                usecase "Tout payer" as UC332
+
+
+    ' VENTES
+
+    usecase "Ventes (POS)" as UCP2
+        usecase "Afficher statistiques vente" as UC4
+
+        usecase "Valider une vente" as UC5
+            usecase "Ajouter des articles" as UC51
+                usecase "Choisir articles" as UC511
+            usecase "Choisir client" as UC52
+            usecase "Choisir règlement" as UC53
+
+        usecase "Consulter le registre des ventes" as UC6
+            usecase "Ligne de vente" as UC61
+                usecase "Afficher article" as UC611
+
+
+    ' GESTION DES DETTES
+
+    usecase "Gestion des dettes" as UCP3
+
+        usecase "statistique dette" as UC7
+
+        usecase "Registre de dette active" as UC8
+            usecase "Filtre par clients" as UC81
+            usecase "Lister les articles de la dette" as UC82
+                usecase "articles" as UC821
+                    usecase "lister articles" as UC8211
+                usecase "Paiements" as UC822
+                    usecase "lister paiement" as UC8221
+                usecase "Remboursement" as UC823
+                    usecase "lister enregistrement remboursement" as UC8231
+                        usecase "enregistre remboursement" as UC822311
+                            usecase "choisir canal paiement" as UC823111
+             
+
+
+    ' APPROVISIONNEMENTS
+
+    usecase "Approvisionnements" as UCP4
+
+        usecase "statistique appro" as UC9
+
+        usecase "Bordereaux de livraison" as UC10
+            
+            usecase "Lister appros" as UC101
+                usecase "ligne" as UC1011
+                    usecase "lister un appro" as UC10111
+                usecase "reception" as UC1012
+                    usecase "lister reception" as UC10121
+                      usecase "valider reception" as UC101211
+                    
+
+    ' CATALOGUE ET TIERS
+
+    usecase "Catalogue et tiers" as UCP5
+
+        usecase "afficher statistique" as UC11
+        usecase "gestion" as UC12
+
+            usecase "Gérer les produits" as UC121
+                usecase "Ajouter un produit" as UC1211
+                usecase "lister catalogue" as UC1212
+          
+
+            usecase "Gérer les clients" as UC122
+                usecase "Ajouter un client" as UC1221
+                usecase "lister repertoir client" as UC1222
+         
+
+            usecase "Gérer les fournisseurs" as UC123
+                usecase "Ajouter un fournisseur" as UC1231
+                usecase "repertoir fournisseur" as UC1232
+         
+
+
+    ' DECONNEXION
+
+    usecase "Déconnexion" as UCP6
+}
+
+
+' ASSOCIATIONS ADMIN
+
+Admin --> UCP1
+Admin --> UCP2
+Admin --> UCP3
+Admin --> UCP4
+Admin --> UCP5
+Admin --> UCP6
+
+
+' AUTHENTIFICATION
+
+A --> UCP1
+A --> UCP2
+A --> UCP3
+A --> UCP4
+A --> UCP5
+A --> UCP6
+
+
+' TABLEAU DE BORD
+
+
+UCP1 ..> UC1 : <<include>>
+UCP1 ..> UC2 : <<include>>
+UCP1 ..> UC3 : <<include>>
+
+UC2 ..> UC21 : <<include>>
+UC2 ..> UC22 : <<include>>
+UC2 ..> UC23 : <<include>>
+
+UC22 <.. UC221 : <<extend>>
+
+UC23 <.. UC231 : <<extend>>
+UC231 ..> UC2311 : <<include>>
+UC2311 <.. UC23111 : <<extend>>
+
+UC3 ..> UC31 : <<include>>
+UC31 <.. UC311 : <<extend>>
+
+UC3 ..> UC32 : <<include>>
+UC3 ..> UC33 : <<include>>
+
+UC32 <.. UC321 : <<extend>>
+UC321 ..> UC3211 : <<include>>
+UC3211 <.. UC32111 : <<extend>>
+
+UC33 <.. UC331 : <<extend>>
+UC331 ..> UC3311 : <<include>>
+UC3311 <.. UC33111 : <<extend>>
+
+UC33 ..> UC332 : <<include>
+
+
+' VENTES
+
+UCP2 ..> UC4 : <<include>>
+UCP2 ..> UC5 : <<include>>
+UCP2 ..> UC6 : <<include>>
+
+UC5 ..> UC51 : <<include>>
+UC5 ..> UC52 : <<include>>
+UC5 ..> UC53 : <<include>>
+
+UC51 ..> UC511 : <<include>>
+
+UC6 <.. UC61 : <<extend>>
+UC61 ..> UC611 : <<include>>
+
+
+
+' GESTION DES DETTES
+
+
+UCP3 ..> UC7 : <<include>>
+UCP3 ..> UC8 : <<include>>
+UC8 <.. UC81 : <<extend>>
+UC8 ..> UC82: <<include>>
+UC82 <.. UC821 : <<extend>>
+UC82 <.. UC822 : <<extend>>
+UC82 <.. UC823 : <<extend>>
+UC821 <.. UC8211 : <<extend>>
+UC8211 ..> UC82111: <<include>>
+UC822 <.. UC8221 : <<extend>>
+UC823 ..> UC8231: <<include>>
+UC8231 <.. UC822311 : <<extend>>
+UC822311 ..> UC823111: <<include>>
+
+
+' APPROVISIONNEMENTS
+
+
+UCP4 ..> UC9 : <<include>>
+UCP4 ..> UC10 : <<include>>
+UC10 ..> UC101 : <<include>>
+UC101 ..> UC1011: <<include>>
+UC101 ..> UC1012: <<include>>
+UC1011 ..> UC10111: <<include>>
+UC1012 ..> UC10121: <<include>>
+UC10121 <.. UC101211 : <<extend>>
+
+
+
+
+' CATALOGUE ET TIERS
+
+
+UCP5 ..> UC11 : <<include>>
+UCP5 ..> UC12 : <<include>>
+UC12 <-- UC121
+UC121 <.. UC1211 : <<extend>>
+UC121 <.. UC1212 : <<extend>>
+UC12 <-- UC122
+UC122 <.. UC1221 : <<extend>>
+UC122 <.. UC1222 : <<extend>>
+UC12 <-- UC123
+UC123 <.. UC1231 : <<extend>>
+UC123 <.. UC1232 : <<extend>>
+
+
+
+
+@enduml

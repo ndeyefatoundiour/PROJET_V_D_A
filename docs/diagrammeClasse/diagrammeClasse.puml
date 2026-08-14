@@ -1,0 +1,143 @@
+@startuml gestion vente appro dette
+skinparam classAttributeIconSize 0
+
+class Role {
+    id int
+    nom string
+    description string
+
+}
+
+class Utilisateur {
+    id int
+    nom string
+    prenom string
+    email string
+    password string
+    adresse string
+    telephone string
+}
+
+class Client {
+    id int
+    nom string
+    prenom string
+    telephone string
+    email string
+}  
+
+class Fournisseur {
+    id int
+    nom string
+    email string
+    telephone string
+    adresse string
+   
+}
+
+class Produit {
+    id int
+    code string
+    libelle string
+    categorie string
+    prixVente float
+    coutAchat float
+    stockInitial int
+    stockActuel int
+    seuilAlerte int
+    
+}
+
+class commande {
+    id int
+    numeroFacture string
+    montantTotal float
+    montantVerse float
+    modeReglement string
+    statut string
+    dateVente DateTime
+    dateEcheance DateTime
+    
+}
+
+class LigneCommande {
+    id int
+    quantite int
+    prixUnitaire float
+    sousTotal float
+ 
+}
+
+class Dette {
+    id int
+    ref string
+    montantInitial float
+    montantVerse float
+    montantRestant float
+    dateEcheance DateTime
+    statut string
+    created_at DateTime
+  
+}
+
+class Paiement {
+    id int
+    montant float
+    notes string
+    datePaiement DateTime
+    reference string
+}
+
+class ModePaiement {
+     id: int
+     nom: string
+ 
+}
+
+class Approvisionnement {
+    id int
+    referenceBl string
+    coutTotal float
+    dateAppro DateTime
+    dateReception DateTime
+    statut string
+ 
+}
+
+class LigneApprovisionnement {
+     id int
+     quantiteAppro int
+     quantiteRecue int
+     prixAchat float
+     sousTotal float
+}
+
+' Relations 
+
+Utilisateur "1" -- "1" Role 
+Utilisateur "1" -- "*" commande 
+Utilisateur "1" -- "*" Approvisionnement 
+
+Client "1" -- "*" commande 
+Client "1" -- "*" Dette 
+
+commande "1" -- "0..1" Dette 
+commande "1" -- "*" LigneCommande 
+commande "*" -- "0..1" Client 
+LigneCommande "*" -- "1" Produit 
+
+Dette "1" -- "*" Paiement 
+Dette "1" -- "0..1" commande 
+
+Paiement "*" -- "1" ModePaiement 
+Paiement "*" -- "0..1" Utilisateur 
+Fournisseur "1" -- "*" Approvisionnement 
+
+Approvisionnement "1" -- "*" LigneApprovisionnement 
+Approvisionnement "*" -- "0..1" Utilisateur 
+
+LigneApprovisionnement "*" -- "1" Produit 
+
+Produit "*" -- "0..1" Fournisseur 
+
+@enduml
