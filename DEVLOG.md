@@ -1,4 +1,4 @@
-# 📓 Journal de Développement (DEVLOG)
+# Journal de Développement (DEVLOG)
 
 **Nom & Prénom** :Ndeye Fatou Ndiour
 
@@ -8,13 +8,12 @@
 
 ## 1. Suivi Chronologique des Phases
 
-### 🌃 [Vendredi - Phase 1] : Conception & BDD Fallback
+### [Vendredi - Phase 1] : Conception & BDD Fallback
 
 - **Heure de réalisation** : 19h00 - 23h00
-- 
 - **Ce qui a été fait** :
 
-  - Modélisation du périmètre de l'application via un diagramme de Cas d'Utilisation PlantUML ultra-détaillé centré sur le rôle de l'Administrateur, charger de Stock , charger de Vente , innventaire, ses permissions et les inclusions d'authentification les extendes .
+  - Modélisation du périmètre de l'application via un diagramme de Cas d'Utilisation avec  PlantUML centré sur les rôles de l'Admin, charger de Stock , charger de Vente , innventaire, ses permissions , les inclusions   et  les extendes .
   - la modelisation est detailler et structure
   - Création du diagramme de classes  définissant les entités métiers (`Client`, `Produit`, `Commande`, `Dette`) et leurs cardinalités.
 - **Difficultés / Obstacles** :
