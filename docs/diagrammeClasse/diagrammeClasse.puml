@@ -118,10 +118,8 @@ Utilisateur "1" -- "1" Role
 Utilisateur "1" -- "*" commande 
 Utilisateur "1" -- "*" Approvisionnement 
 
-Client "1" -- "*" commande 
 Client "1" -- "*" Dette 
 
-commande "1" -- "0..1" Dette 
 commande "1" -- "*" LigneCommande 
 commande "*" -- "0..1" Client 
 LigneCommande "*" -- "1" Produit 
@@ -134,7 +132,6 @@ Paiement "*" -- "0..1" Utilisateur
 Fournisseur "1" -- "*" Approvisionnement 
 
 Approvisionnement "1" -- "*" LigneApprovisionnement 
-Approvisionnement "*" -- "0..1" Utilisateur 
 
 LigneApprovisionnement "*" -- "1" Produit 
 

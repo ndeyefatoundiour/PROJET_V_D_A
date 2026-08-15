@@ -1,48 +1,121 @@
 <?php
 
-class Approvisionnement {
-    private ?int $id;
-    private string $referenceBl;
-    private float $coutTotal;
-    private string $dateAppro;
-    private string $dateReception;
-    private string $statut;
-    private int $fournisseurId;
-    private int $utilisateurId;
+require_once  '/Fournisseur.php';
+require_once  '/Utilisateur.php';
 
-    public function __construct(?int $id, string $referenceBl, float $coutTotal, string $dateAppro, string $dateReception, string $statut, int $fournisseurId, int $utilisateurId) {
+class Approvisionnement
+{
+    private ?int $id;
+    private string $reference_bl;
+    private int $fournisseurId;
+    private ?Fournisseur $fournisseur = null;
+    private ?int $utilisateurId;
+    private ?Utilisateur $utilisateur = null;
+    private float $cout_total;
+    private ?string $date_reception;
+    private string $statut;
+    private array $lignes = [];
+
+    public function __construct(string $reference_bl, int $fournisseurId, ?int $utilisateurId, float $cout_total, ?string $date_reception = null, string $statut = 'EN_ATTENTE', ?int $id = null)
+    {
         $this->id = $id;
-        $this->referenceBl = $referenceBl;
-        $this->coutTotal = $coutTotal;
-        $this->dateAppro = $dateAppro;
-        $this->dateReception = $dateReception;
-        $this->statut = $statut;
+        $this->reference_bl = $reference_bl;
         $this->fournisseurId = $fournisseurId;
         $this->utilisateurId = $utilisateurId;
+        $this->cout_total = $cout_total;
+        $this->date_reception = $date_reception;
+        $this->statut = $statut;
     }
+
 
     public function getId(): ?int { 
         return $this->id; 
     }
+    public function setId(?int $id): void { 
+        $this->id = $id; 
+    }
+
     public function getReferenceBl(): string { 
-        return $this->referenceBl; 
+        return $this->reference_bl; 
     }
-    public function getCoutTotal(): float { 
-        return $this->coutTotal; 
+    public function setReferenceBl(string $reference_bl): void { 
+        $this->reference_bl = $reference_bl; 
     }
-    public function getDateAppro(): string { 
-        return $this->dateAppro; 
-    }
-    public function getDateReception(): string { 
-        return $this->dateReception; 
-    }
-    public function getStatut(): string { 
-        return $this->statut; 
-    }
+
     public function getFournisseurId(): int { 
         return $this->fournisseurId; 
     }
-    public function getUtilisateurId(): int { 
+    public function setFournisseurId(int $fournisseurId): void { 
+        $this->fournisseurId = $fournisseurId; 
+    }
+
+    public function getFournisseur(): ?Fournisseur { 
+        return $this->fournisseur; 
+    }
+    public function setFournisseur(?Fournisseur $fournisseur): void { 
+        $this->fournisseur = $fournisseur; 
+    }
+
+    public function getUtilisateurId(): ?int { 
         return $this->utilisateurId; 
+    }
+    public function setUtilisateurId(?int $utilisateurId): void { 
+        $this->utilisateurId = $utilisateurId; 
+    }
+
+    public function getUtilisateur(): ?Utilisateur { 
+        return $this->utilisateur; 
+    }
+    public function setUtilisateur(?Utilisateur $utilisateur): void { 
+        $this->utilisateur = $utilisateur; 
+    }
+
+    public function getCoutTotal(): float { 
+        return $this->cout_total; 
+    }
+    public function setCoutTotal(float $cout_total): void { 
+        $this->cout_total = $cout_total; 
+    }
+
+    public function getDateReception(): ?string { 
+        return $this->date_reception; 
+    }
+    public function setDateReception(?string $date_reception): void { 
+        $this->date_reception = $date_reception; 
+    }
+
+    public function getStatut(): string { 
+        return $this->statut; 
+    }
+    public function setStatut(string $statut): void { 
+        $this->statut = $statut; 
+    }
+
+    public function getLignes(): array { 
+        return $this->lignes; 
+    }
+    public function setLignes(array $lignes): void { 
+        $this->lignes = $lignes; 
+    }
+
+    
+    public function isReceived(): bool { 
+        return $this->statut === 'RECU' ; 
+    }
+
+    
+    public function addLigne($ligne): void {
+        $this->lignes[] = $ligne;
+        $this->cout_total += $ligne->getSousTotal();
+    }
+
+    public function validerReception(): void {
+        
+        if ($this->isReceived()) {
+
+            throw new Exception("Cet approvisionnement a déjà été réceptionné et validé.");
+        }
+        $this->statut = 'RECU';
+        $this->date_reception = date('Y-m-d');
     }
 }

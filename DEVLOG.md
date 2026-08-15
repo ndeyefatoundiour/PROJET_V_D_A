@@ -33,13 +33,25 @@
   ### [Samedi - Phase 2] : POO, Repositories & Ventes POS
 
 
-  - **Heure de réalisation** : 09h00 - 11h00
+  - **Heure de réalisation** : 09h00 - 20h00
   - **Ce qui a été fait** : src/model/Entety sa regroupe tout es les classe que j'avais fait dans `schema.sql` on a toutes les classe s chacun avec leur attributs au complet jai eu a modifier l fichier sql par ce que jai remarque que javais pas besoin de certain attribut
   - on doit utuliser de require op des namspeace
-  - jai ajouter les methode pour chaque classe et jai utiliser les variable en format camelCase
+  - jai ajouter les methode pour chaque classe et jai utiliser les variable en format camelCas
+  - les clef etranger son des objet donc leur type son leur classe
+  - Dans le dossier /Entity jai ajouter des require_once pour chaque entety ki a une clef entranger pour qu'il l reconnais il faut faire un require_once de la classe exemple (require_once. '/Fournisseur.php';)
+  - jai utilise private pour tout les attribut par ce que il empeche au vu et au controller de modifier les les variables
+  - le ? permet a la variable (attribut) d'etre null
+  - pour approvisionnement et commande on a **Le tableau `$lignes` :** Il sert à regrouper toutes les lignes de produit ou article .
+  - `Le Constructeur (__construct)` c une methode magic appelle par  mots cle new il nous permette de cree des objet pour un classe donne
+  - les fonction get et set nous permet de avoir acces au attribut (Le **Getter** (commence par `get`) extrait et retourne proprement la valeur en lecture seule,Le **Setter** (commence par `set`) prend une valeur en paramètre et écrase l'ancienne valeur. Le type de retour est `void` car un setter ne retourne rien, il exécute juste une action .)
+  - on a aussi pour chaque ses fonction utilitaire
+  - - jai ajouter sur database les fonction ki vont m permettre de faire le repository  jai aussi modifier la fonction `connexionDB()` pour l chemin
+    - jai ajouter `deconnecteDB()` pour la deconnexion ,`query` , ` prepare` ,  `executeQuery`,`executeUpdate`, `getAllTable` avec leur paramettre ,
+    - javais des erreur sur digramme de classe les relation etais faites deux fois ms c corriger
+    - jai unitialiser des donner dans la base de donner
+    - jai remplie la repository l clientRepository , fournisseurRepository , produitRepository avec les fonction ki nous permet d'insere , recupere tout les clients , selectionner par id et conversion
   - **Difficultés / Obstacles** :
-
----
+  - 
 
 ## 2. Autopsie de 3 Méthodes Clés (Indispensable pour l'oral)
 
