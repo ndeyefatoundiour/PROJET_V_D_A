@@ -1,5 +1,4 @@
 <?php
-namespace App\Model\Entity;
 
 class Role {
     private ?int $id = null;

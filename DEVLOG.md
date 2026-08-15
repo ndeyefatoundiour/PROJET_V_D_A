@@ -35,6 +35,7 @@
 
   - **Heure de réalisation** : 09h00 - 11h00
   - **Ce qui a été fait** : src/model/Entety sa regroupe tout es les classe que j'avais fait dans `schema.sql` on a toutes les classe s chacun avec leur attributs au complet jai eu a modifier l fichier sql par ce que jai remarque que javais pas besoin de certain attribut
+  - on doit utuliser de require op des namspeace
   - **Difficultés / Obstacles** :
 
 ---

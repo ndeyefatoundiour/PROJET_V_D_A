@@ -1,5 +1,4 @@
 <?php
-namespace App\Model\Entity;
 
 class Client {
     private int $id ;

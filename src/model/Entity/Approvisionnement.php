@@ -1,5 +1,4 @@
 <?php
-namespace App\Model\Entity;
 
 class Approvisionnement {
     private int $id ;

@@ -1,5 +1,4 @@
 <?php
-namespace App\Model\Entity;
 
 class LigneCommande {
     private int $id ;

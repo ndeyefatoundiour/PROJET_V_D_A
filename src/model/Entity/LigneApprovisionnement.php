@@ -1,5 +1,4 @@
 <?php
-namespace App\Model\Entity;
 
 class LigneApprovisionnement {
     private int $id ;
