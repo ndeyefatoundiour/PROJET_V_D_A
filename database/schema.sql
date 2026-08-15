@@ -60,8 +60,6 @@ CREATE TABLE mode_paiement (
     nom VARCHAR(100) NOT NULL UNIQUE
 );
 
-
-
 CREATE TABLE commande (
     id SERIAL PRIMARY KEY,
     numero_facture VARCHAR(100) NOT NULL UNIQUE,
