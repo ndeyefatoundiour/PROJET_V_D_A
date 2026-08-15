@@ -74,7 +74,6 @@ UC82 <.. UC821 : <<extend>>
 UC82 <.. UC822 : <<extend>>
 UC82 <.. UC823 : <<extend>>
 UC821 <.. UC8211 : <<extend>>
-UC8211 ..> UC82111: <<include>>
 UC822 <.. UC8221 : <<extend>>
 UC823 ..> UC8231: <<include>>
 UC8231 <.. UC822311 : <<extend>>

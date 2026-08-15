@@ -16,6 +16,8 @@
   - Modélisation du périmètre de l'application via un diagramme de Cas d'Utilisation avec  PlantUML centré sur les rôles de l'Admin, charger de Stock , charger de Vente , innventaire, ses permissions , les inclusions   et  les extendes .
   - la modelisation est detailler et structure
   - Création du diagramme de classes  définissant les entités métiers (`Client`, `Produit`, `Commande`, `Dette`) et leurs cardinalités.
+  - jai corriger une erreur sur le use case j lavais op vue
+  - jai ajouter le dossier image ki regroupe les rendes des use case
   - creation de la base de donner avec deux fichiers `schema.sql` (PostgreSQL) et `schema_sqlite.sql`
   - pour l `schema.sql` rien n change pour on fait comme on l fesais
   - pour le `schema_sqlite.sql` on a ajouter une nouvelle chose `PRAGMA foreign_keys = ON;` qui nous permet d'actevier les cles etranger en `sqlite`
