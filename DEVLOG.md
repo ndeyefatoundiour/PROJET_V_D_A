@@ -51,7 +51,9 @@
     - jai unitialiser des donner dans la base de donner
     - jai remplie la repository l clientRepository , fournisseurRepository , produitRepository avec les fonction ki nous permet d'insere , recupere tout les clients , selectionner par id et conversion
   - **Difficultés / Obstacles** :
-  - 
+  - cetait difficile de faire les entity sa ma pris bcp de temps  par ce que sa demander beaucoup d vigilance yavais boucoup de chose a faire les fonction ki sont dans les classe aussi jai faitbeaucoup d recherche pour j connaissais pas aussi quelle genre de fonction qu'elle prenais jai appris aussi les fonction setter et getter
+  - dans data base les fonction on un peut changer par rapport se quon fesais en procedural
+  - pour la ripo le on a maitenant un fonction de conversion `enObjet(array $table)`
 
 ## 2. Autopsie de 3 Méthodes Clés (Indispensable pour l'oral)
 
