@@ -29,7 +29,13 @@
 
   - Syntaxe sur PlantUML pour l'imbrication des cas d'utilisation complexes de l'administrateur.
   - Si on le mot usecase et les geuillemet son coler on a des erreur s j les remarque les alias doivent  etre des string aussi
-  - 
+
+  ### [Samedi - Phase 2] : POO, Repositories & Ventes POS
+
+
+  - **Heure de réalisation** : 09h00 - 11h00
+  - **Ce qui a été fait** : src/model/Entety sa regroupe tout es les classe que j'avais fait dans `schema.sql` on a toutes les classe s chacun avec leur attributs au complet jai eu a modifier l fichier sql par ce que jai remarque que javais pas besoin de certain attribut
+  - **Difficultés / Obstacles** :
 
 ---
 
@@ -57,4 +63,5 @@
   - `$pdo = new PDO("sqlite:erp.db");` : Enclenche le mode de secours (Fallback) en initialisant une connexion vers le fichier local léger SQLite `erp.db ` cree precedement dans database
   - `$pdo->exec("PRAGMA foreign_keys = ON");` : Exécute une commande pour forcer SQLite à activer la vérification des clés étrangères .
   - `self::$connexion = $pdo;` : donne l'instance SQLite de secours à la propriété statique.
-  - `return self::$connexion;` : Renvoie l'instance PDO active (PostgreSQL ou SQLite) selon le cas prête à exécuter des requêtes.
+  - `return self::$connexion;` : Renvoie l'instance PDO active (PostgreSQL ou SQLite) selon le cas prête à exécuter des requête.
+  -

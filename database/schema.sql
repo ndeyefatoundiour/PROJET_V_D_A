@@ -2,7 +2,6 @@
 CREATE TABLE role (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
-    description TEXT
 );
 
 
@@ -47,7 +46,6 @@ CREATE TABLE produit (
     id SERIAL PRIMARY KEY,
     code VARCHAR(100) NOT NULL UNIQUE,
     libelle VARCHAR(150) NOT NULL,
-    categorie VARCHAR(100),
     prix_vente NUMERIC(12,2) NOT NULL,
     cout_achat NUMERIC(12,2) NOT NULL,
     stock_initial INT NOT NULL DEFAULT 0,
@@ -134,7 +132,6 @@ CREATE TABLE dette (
 CREATE TABLE paiement (
     id SERIAL PRIMARY KEY,
     montant NUMERIC(12,2) NOT NULL,
-    notes TEXT,
     date_paiement DATE NOT NULL DEFAULT CURRENT_DATE,
     reference VARCHAR(100) NOT NULL UNIQUE,
 
