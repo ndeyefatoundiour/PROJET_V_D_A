@@ -3,6 +3,7 @@
 class VenteService {
 
     public static function enregistrerVente(
+        
         PDO $pdo, 
         string $numeroFacture, 
         float $montantTotal, 

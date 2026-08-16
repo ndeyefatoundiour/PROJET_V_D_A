@@ -55,10 +55,13 @@
     pour l service de vente jai pris beaucoup de temps pour le faire jai apris aussi beaucoup de chose javais du mal a l faire avec les requete la succesion des requetes qui viens a pres lautre on a dabord insere sur commande recupere l'id grace a la reque executeUpdate apres sur le panier pour insere les ligne de commande j un peu compris pourkoi tu disais sur le  panier par ce que sa existe un moment etre on a en plus besoin on l stock op  jai essayer de l faire comme jai pue
   - pour l erp.db jai essayer de le faire ms sa reste j crois il faut que j continue
   - vous pouvez voir aussi que jai touche quelque fichier ms rien n'est change apprenait juste les essayer de les refaire
+  - j m suis tromper sur lecriture du fichier ms j lai corriger sa devais comencer par une lettre magiscule
+  - 
   - **Difficultés / Obstacles** :
   - cetait difficile de faire les entity sa ma pris bcp de temps  par ce que sa demander beaucoup d vigilance yavais boucoup de chose a faire les fonction ki sont dans les classe aussi jai faitbeaucoup d recherche pour j connaissais pas aussi quelle genre de fonction qu'elle prenais jai appris aussi les fonction setter et getter
   - dans data base les fonction on un peut changer par rapport se quon fesais en procedural
   - pour la ripo le on a maitenant un fonction de conversion `enObjet(array $table)`
+  - javais un proble sur comment gere `$dateEcheance` pour l trouver
 
 ## 2. Autopsie de 3 Méthodes Clés (Indispensable pour l'oral)
 

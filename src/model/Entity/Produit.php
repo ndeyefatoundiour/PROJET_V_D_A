@@ -4,7 +4,6 @@ class Produit {
     private ?int $id;
     private string $code;
     private string $libelle;
-    private ?string $categorie;
     private float $prix_vente;
     private float $cout_achat;
     private int $stock_initial;
