@@ -2,7 +2,7 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE role (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom VARCHAR(100) NOT NULL
+    nom VARCHAR(100) NOT NULL  
 );
 
 

@@ -45,18 +45,22 @@
   - `Le Constructeur (__construct)` c une methode magic appelle par  mots cle new il nous permette de cree des objet pour un classe donne
   - les fonction get et set nous permet de avoir acces au attribut (Le **Getter** (commence par `get`) extrait et retourne proprement la valeur en lecture seule,Le **Setter** (commence par `set`) prend une valeur en paramètre et écrase l'ancienne valeur. Le type de retour est `void` car un setter ne retourne rien, il exécute juste une action .)
   - on a aussi pour chaque ses fonction utilitaire
-  - - jai ajouter sur database les fonction ki vont m permettre de faire le repository  jai aussi modifier la fonction `connexionDB()` pour l chemin
+  - jai ajouter sur database les fonction ki vont m permettre de faire le repository  jai aussi modifier la fonction `connexionDB()` pour l chemin
+
     - jai ajouter `deconnecteDB()` pour la deconnexion ,`query` , ` prepare` ,  `executeQuery`,`executeUpdate`, `getAllTable` avec leur paramettre ,
     - javais des erreur sur digramme de classe les relation etais faites deux fois ms c corriger
     - jai unitialiser des donner dans la base de donner
     - jai remplie la repository l clientRepository , fournisseurRepository , produitRepository avec les fonction ki nous permet d'insere , recupere tout les clients , selectionner par id et conversion
+
+    pour l service de vente jai pris beaucoup de temps pour le faire jai apris aussi beaucoup de chose javais du mal a l faire avec les requete la succesion des requetes qui viens a pres lautre on a dabord insere sur commande recupere l'id grace a la reque executeUpdate apres sur le panier pour insere les ligne de commande j un peu compris pourkoi tu disais sur le  panier par ce que sa existe un moment etre on a en plus besoin on l stock op  jai essayer de l faire comme jai pue
+  - pour l erp.db jai essayer de le faire ms sa reste j crois il faut que j continue
+  - vous pouvez voir aussi que jai touche quelque fichier ms rien n'est change apprenait juste les essayer de les refaire
   - **Difficultés / Obstacles** :
   - cetait difficile de faire les entity sa ma pris bcp de temps  par ce que sa demander beaucoup d vigilance yavais boucoup de chose a faire les fonction ki sont dans les classe aussi jai faitbeaucoup d recherche pour j connaissais pas aussi quelle genre de fonction qu'elle prenais jai appris aussi les fonction setter et getter
   - dans data base les fonction on un peut changer par rapport se quon fesais en procedural
   - pour la ripo le on a maitenant un fonction de conversion `enObjet(array $table)`
 
 ## 2. Autopsie de 3 Méthodes Clés (Indispensable pour l'oral)
-
 
 ### Méthode 1 : `Database::connexionDB()`
 

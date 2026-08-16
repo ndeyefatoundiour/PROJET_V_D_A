@@ -1,7 +1,7 @@
 
 CREATE TABLE role (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
+    nom VARCHAR(100) NOT NULL
 );
 
 INSERT INTO role (nom) VALUES

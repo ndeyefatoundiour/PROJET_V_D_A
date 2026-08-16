@@ -45,19 +45,17 @@ class Database {
         self::$connexion = null;
     }
 
-    
-    public static function query(PDO $pdo, string $sql, bool $single = true): array|false{
-        $query = $pdo->query($sql);
-        return $single ? $query->fetch() : $query->fetchAll();
-    }
-
-  
     public static function prepare(PDO $pdo, string $sql, array $datas = []): PDOStatement{
         $statement = $pdo->prepare($sql);
         $statement->execute($datas);
         return $statement;
     }
 
+    
+    public static function query(PDO $pdo, string $sql, bool $single = true): array|false{
+        $query = $pdo->query($sql);
+        return $single ? $query->fetch() : $query->fetchAll();
+    }
   
     public static function executeQuery(PDO $pdo, string $sql, array $datas = [], bool $single = true): array|false{
         $statement = self::prepare($pdo, $sql, $datas);

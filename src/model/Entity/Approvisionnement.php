@@ -16,8 +16,7 @@ class Approvisionnement
     private string $statut;
     private array $lignes = [];
 
-    public function __construct(string $reference_bl, int $fournisseurId, ?int $utilisateurId, float $cout_total, ?string $date_reception = null, string $statut = 'EN_ATTENTE', ?int $id = null)
-    {
+    public function __construct(string $reference_bl, int $fournisseurId, ?int $utilisateurId, float $cout_total, ?string $date_reception = null, string $statut = 'EN_ATTENTE', ?int $id = null){
         $this->id = $id;
         $this->reference_bl = $reference_bl;
         $this->fournisseurId = $fournisseurId;
@@ -103,7 +102,6 @@ class Approvisionnement
         return $this->statut === 'RECU' ; 
     }
 
-    
     public function addLigne($ligne): void {
         $this->lignes[] = $ligne;
         $this->cout_total += $ligne->getSousTotal();

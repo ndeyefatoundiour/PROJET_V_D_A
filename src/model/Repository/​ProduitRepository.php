@@ -6,12 +6,11 @@ class ProduitRepository {
 
     private PDO $pdo;
 
-    public function __construct()
-    {
+    public function __construct() {
+        
         $this->pdo = Database::connexionDB();
     }
 
-    
     public function insert(Produit $produit): int{
 
         $sql = "INSERT INTO produit (code, libelle, prix_vente, cout_achat, stock_initial, stock_actuel, seuil_alerte)
@@ -59,7 +58,6 @@ class ProduitRepository {
     }
 
 
-   
     private function enObjet(array $produit): Produit{
 
         return new Produit(
