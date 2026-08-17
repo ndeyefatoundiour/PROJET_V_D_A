@@ -62,6 +62,7 @@
   - dans data base les fonction on un peut changer par rapport se quon fesais en procedural
   - pour la ripo le on a maitenant un fonction de conversion `enObjet(array $table)`
   - javais un proble sur comment gere `$dateEcheance` pour l trouver
+  - jai charger le vu et cree le fichier controller
 
 ## 2. Autopsie de 3 Méthodes Clés (Indispensable pour l'oral)
 
