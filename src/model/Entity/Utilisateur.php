@@ -10,16 +10,15 @@ class Utilisateur {
     private ?string $adresse;
     private ?string $telephone;
     
-    private int $roleId;
     private ?Role $role = null;
 
-    public function __construct(string $nom, string $prenom, string $email, string $password, int $roleId, ?string $adresse = null, ?string $telephone = null, ?int $id = null) {
+    public function __construct(string $nom, string $prenom, string $email, string $password, Role $role, ?string $adresse = null, ?string $telephone = null, ?int $id = null) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->password = $password;
-        $this->roleId = $roleId;
+        $this->role = $role;
         $this->adresse = $adresse;
         $this->telephone = $telephone;
     }

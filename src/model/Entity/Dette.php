@@ -10,11 +10,7 @@ class Dette {
     private float $montant_restant;
     private ?string $date_echeance;
     private string $statut;
-    
-    private int $clientId;
     private ?Client $client = null;
-    
-    private ?int $commandeId;
     private ?Commande $commande = null;
 
     public function __construct(string $ref, float $montant_initial, int $clientId, ?int $commandeId = null, float $montant_verse = 0.0, ?string $date_echeance = null, string $statut = 'NON_PAYEE', ?int $id = null) {
@@ -25,8 +21,6 @@ class Dette {
         $this->montant_restant = $montant_initial - $montant_verse;
         $this->date_echeance = $date_echeance;
         $this->statut = $statut;
-        $this->clientId = $clientId;
-        $this->commandeId = $commandeId;
     }
 
     public function getId(): ?int { 
@@ -75,25 +69,11 @@ class Dette {
         $this->statut = $statut; 
     }
 
-    public function getClientId(): int { 
-        return $this->clientId; 
-    }
-    public function setClientId(int $clientId): void { 
-        $this->clientId = $clientId; 
-    }
-
     public function getClient(): ?Client { 
         return $this->client; 
     }
     public function setClient(?Client $client): void { 
         $this->client = $client; 
-    }
-
-    public function getCommandeId(): ?int { 
-        return $this->commandeId; 
-    }
-    public function setCommandeId(?int $commandeId): void { 
-        $this->commandeId = $commandeId; 
     }
 
     public function getCommande(): ?Commande { 

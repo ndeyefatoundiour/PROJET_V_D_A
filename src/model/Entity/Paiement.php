@@ -8,21 +8,17 @@ class Paiement {
     private string $date_paiement;
     private string $reference;
     
-    private int $detteId;
     private ?Dette $dette = null;
     
-    private int $modePaiementId;
+    private ?ModePaiement $modePaiement;
     
-    private ?int $utilisateurId;
     private ?Utilisateur $utilisateur = null;
 
-    public function __construct(float $montant, string $reference, int $detteId, int $modePaiementId, ?int $utilisateurId = null, ?string $date_paiement = null, ?int $id = null) {
+    public function __construct(float $montant, string $reference,ModePaiement $modePaiement = null,?string $date_paiement = null, ?int $id = null) {
         $this->id = $id;
         $this->montant = $montant;
         $this->reference = $reference;
-        $this->detteId = $detteId;
-        $this->modePaiementId = $modePaiementId;
-        $this->utilisateurId = $utilisateurId;
+        $this->modePaiement = $modePaiement;
         $this->date_paiement = $date_paiement ?: date('Y-m-d');
     }
 
@@ -54,13 +50,6 @@ class Paiement {
         $this->reference = $reference; 
     }
 
-    public function getDetteId(): int { 
-        return $this->detteId; 
-    }
-    public function setDetteId(int $detteId): void { 
-        $this->detteId = $detteId; 
-    }
-
     public function getDette(): ?Dette { 
         return $this->dette; 
     }
@@ -68,18 +57,11 @@ class Paiement {
         $this->dette = $dette; 
     }
 
-    public function getModePaiementId(): int { 
-        return $this->modePaiementId; 
+    public function getModePaiement(): int { 
+        return $this->modePaiement; 
     }
-    public function setModePaiementId(int $modePaiementId): void { 
-        $this->modePaiementId = $modePaiementId; 
-    }
-
-    public function getUtilisateurId(): ?int { 
-        return $this->utilisateurId; 
-    }
-    public function setUtilisateurId(?int $utilisateurId): void { 
-        $this->utilisateurId = $utilisateurId; 
+    public function setModePaiement(int $modePaiement): void { 
+        $this->modePaiement = $modePaiement; 
     }
 
     public function getUtilisateur(): ?Utilisateur { 

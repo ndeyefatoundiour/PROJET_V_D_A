@@ -7,18 +7,15 @@ class LigneApprovisionnement {
     private int $quantite_recue;
     private float $prix_achat;
     private float $sous_total;
-    private int $approvisionnementId;
-    
-    private int $produitId;
+    private Approvisionnement $Approvisionnement;
     private ?Produit $produit = null;
 
-    public function __construct(int $quantite_appro, float $prix_achat, int $approvisionnementId, int $produitId, int $quantite_recue = 0, float $sous_total = 0.0, ?int $id = null) {
+    public function __construct(int $quantite_appro, float $prix_achat, int $Approvisionnement, int $quantite_recue = 0, float $sous_total = 0.0, ?int $id = null) {
         $this->id = $id;
         $this->quantite_appro = $quantite_appro;
         $this->quantite_recue = $quantite_recue;
         $this->prix_achat = $prix_achat;
-        $this->approvisionnementId = $approvisionnementId;
-        $this->produitId = $produitId;
+        $this->Approvisionnement = $Approvisionnement;
         $this->sous_total = $sous_total ?: ($quantite_appro * $prix_achat);
     }
 
@@ -57,18 +54,11 @@ class LigneApprovisionnement {
         $this->sous_total = $sous_total; 
     }
 
-    public function getApprovisionnementId(): int { 
-        return $this->approvisionnementId; 
+    public function getApprovisionnement(): int { 
+        return $this->approvisionnement; 
     }
-    public function setApprovisionnementId(int $approvisionnementId): void { 
-        $this->approvisionnementId = $approvisionnementId; 
-    }
-
-    public function getProduitId(): int { 
-        return $this->produitId; 
-    }
-    public function setProduitId(int $produitId): void { 
-        $this->produitId = $produitId; 
+    public function setApprovisionnement(int $approvisionnement): void { 
+        $this->approvisionnement = $approvisionnement; 
     }
 
     public function getProduit(): ?Produit { 

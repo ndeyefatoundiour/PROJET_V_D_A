@@ -7,25 +7,20 @@ class Approvisionnement
 {
     private ?int $id;
     private string $reference_bl;
-    private int $fournisseurId;
     private ?Fournisseur $fournisseur = null;
-    private ?int $utilisateurId;
     private ?Utilisateur $utilisateur = null;
     private float $cout_total;
     private ?string $date_reception;
     private string $statut;
     private array $lignes = [];
 
-    public function __construct(string $reference_bl, int $fournisseurId, ?int $utilisateurId, float $cout_total, ?string $date_reception = null, string $statut = 'EN_ATTENTE', ?int $id = null){
+    public function __construct(string $reference_bl, float $cout_total, ?string $date_reception = null, string $statut = 'EN_ATTENTE', ?int $id = null){
         $this->id = $id;
         $this->reference_bl = $reference_bl;
-        $this->fournisseurId = $fournisseurId;
-        $this->utilisateurId = $utilisateurId;
         $this->cout_total = $cout_total;
         $this->date_reception = $date_reception;
         $this->statut = $statut;
     }
-
 
     public function getId(): ?int { 
         return $this->id; 
@@ -41,25 +36,11 @@ class Approvisionnement
         $this->reference_bl = $reference_bl; 
     }
 
-    public function getFournisseurId(): int { 
-        return $this->fournisseurId; 
-    }
-    public function setFournisseurId(int $fournisseurId): void { 
-        $this->fournisseurId = $fournisseurId; 
-    }
-
     public function getFournisseur(): ?Fournisseur { 
         return $this->fournisseur; 
     }
     public function setFournisseur(?Fournisseur $fournisseur): void { 
         $this->fournisseur = $fournisseur; 
-    }
-
-    public function getUtilisateurId(): ?int { 
-        return $this->utilisateurId; 
-    }
-    public function setUtilisateurId(?int $utilisateurId): void { 
-        $this->utilisateurId = $utilisateurId; 
     }
 
     public function getUtilisateur(): ?Utilisateur { 
@@ -96,7 +77,6 @@ class Approvisionnement
     public function setLignes(array $lignes): void { 
         $this->lignes = $lignes; 
     }
-
     
     public function isReceived(): bool { 
         return $this->statut === 'RECU' ; 

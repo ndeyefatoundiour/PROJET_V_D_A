@@ -11,16 +11,11 @@ class Commande {
     private string $statut;
     private string $date_vente;
     private ?string $date_echeance;
-    
-    private int $utilisateurId;
     private ?Utilisateur $utilisateur = null;
-    
-    private ?int $clientId;
     private ?Client $client = null;
-    
     private array $lignes = [];
 
-    public function __construct(string $numero_facture, int $utilisateurId, ?int $clientId = null, float $montant_total = 0.0, float $montant_verse = 0.0, ?string $mode_reglement = null, string $statut = 'EN_ATTENTE', ?string $date_vente = null, ?string $date_echeance = null, ?int $id = null) {
+    public function __construct(string $numero_facture, float $montant_total = 0.0, float $montant_verse = 0.0, ?string $mode_reglement = null, string $statut = 'EN_ATTENTE', ?string $date_vente = null, ?string $date_echeance = null, ?int $id = null) {
         $this->id = $id;
         $this->numero_facture = $numero_facture;
         $this->montant_total = $montant_total;
@@ -29,8 +24,6 @@ class Commande {
         $this->statut = $statut;
         $this->date_vente = $date_vente ?: date('Y-m-d');
         $this->date_echeance = $date_echeance;
-        $this->utilisateurId = $utilisateurId;
-        $this->clientId = $clientId;
     }
 
     public function getId(): ?int { 
@@ -88,25 +81,11 @@ class Commande {
         $this->date_echeance = $date_echeance; 
     }
 
-    public function getUtilisateurId(): int { 
-        return $this->utilisateurId; 
-    }
-    public function setUtilisateurId(int $utilisateurId): void { 
-        $this->utilisateurId = $utilisateurId; 
-    }
-
     public function getUtilisateur(): ?Utilisateur { 
         return $this->utilisateur; 
     }
     public function setUtilisateur(?Utilisateur $utilisateur): void { 
         $this->utilisateur = $utilisateur; 
-    }
-
-    public function getClientId(): ?int { 
-        return $this->clientId; 
-    }
-    public function setClientId(?int $clientId): void { 
-        $this->clientId = $clientId; 
     }
 
     public function getClient(): ?Client { 

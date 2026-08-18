@@ -6,17 +6,15 @@ class LigneCommande {
     private int $quantite;
     private float $prix_unitaire;
     private float $sous_total;
-    private int $commandeId;
-    
-    private int $produitId;
+    private Commande $commande;
     private ?Produit $produit = null;
 
-    public function __construct(int $quantite, float $prix_unitaire, int $commandeId, int $produitId, float $sous_total = 0.0, ?int $id = null) {
+    public function __construct(int $quantite, float $prix_unitaire, int $commande, int $produit, float $sous_total = 0.0, ?int $id = null) {
         $this->id = $id;
         $this->quantite = $quantite;
         $this->prix_unitaire = $prix_unitaire;
-        $this->commandeId = $commandeId;
-        $this->produitId = $produitId;
+        $this->commande = $commande;
+        $this->produit = $produit;
         $this->sous_total = $sous_total ?: ($quantite * $prix_unitaire);
     }
 
@@ -49,18 +47,11 @@ class LigneCommande {
         $this->sous_total = $sous_total; 
     }
 
-    public function getCommandeId(): int { 
-        return $this->commandeId; 
+    public function getCommande(): int { 
+        return $this->commande; 
     }
-    public function setCommandeId(int $commandeId): void { 
-        $this->commandeId = $commandeId; 
-    }
-
-    public function getProduitId(): int { 
-        return $this->produitId;
-    }
-    public function setProduitId(int $produitId): void { 
-        $this->produitId = $produitId; 
+    public function setCommande(int $commande): void { 
+        $this->commande = $commande; 
     }
 
     public function getProduit(): ?Produit { 
