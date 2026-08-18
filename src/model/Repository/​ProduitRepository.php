@@ -4,19 +4,23 @@ require_once dirname(__DIR__) . "/Entity/Produit.php";
 
 class ProduitRepository {
 
-    private PDO $pdo;
+    private static ?PDO $pdo = null;
 
-    public function __construct() {
-        
-        $this->pdo = Database::connexionDB();
+    private function __construct() {}
+
+    private static function init(): void {
+        if (self::$pdo === null) {
+            self::$pdo = Database::connexionDB();
+        }
     }
-
-    public function insert(Produit $produit): int{
+    
+    public static function insert(Produit $produit): int {
+        self::init(); 
 
         $sql = "INSERT INTO produit (code, libelle, prix_vente, cout_achat, stock_initial, stock_actuel, seuil_alerte)
                 VALUES(:code, :libelle, :prix_vente, :cout_achat, :stock_initial, :stock_actuel, :seuil_alerte)";
 
-        Database::executeUpdate($this->pdo, $sql, [
+        Database::executeUpdate(self::$pdo, $sql, [
             'code'          => $produit->getCode(),
             'libelle'       => $produit->getLibelle(),
             'prix_vente'    => $produit->getPrixVente(),
@@ -26,48 +30,48 @@ class ProduitRepository {
             'seuil_alerte'  => $produit->getSeuilAlerte()
         ]);
 
-        $id = (int) $this->pdo->lastInsertId();
+        $id = (int) self::$pdo->lastInsertId();
         $produit->setId($id);
+        
         return $id;
     }
 
-    
-    public function selectById(int $id): ?Produit{
+    public static function selectById(int $id): ?Produit {
+        self::init();
 
         $sql = "SELECT * FROM produit WHERE id = :id";
-        $produit = Database::executeQuery($this->pdo, $sql, ['id' => $id]);
+        $produit = Database::executeQuery(self::$pdo, $sql, ['id' => $id]);
 
         if (!$produit) return null;
         
-        return $this->enObjet($produit);
+        return self::enObjet($produit);
     }
 
-   
-    public function selectAll(): array{
 
+    public static function selectAll(): array {
         $tableauProduits = Database::getAllTable('produit');
         $produits = [];
 
-        if (empty($tableauProduits)) return $produits;
+        if (empty($tableauProduits)) {
+            return $produits;
+        }
         
         foreach ($tableauProduits as $produit) {
-            $produits[] = $this->enObjet($produit);
+            $produits[] = self::enObjet($produit);
         }
 
         return $produits;
     }
 
-
-    private function enObjet(array $produit): Produit{
-
+    private static function enObjet(array $produit): Produit {
         return new Produit(
             $produit['code'],
             $produit['libelle'],
             (float) $produit['prix_vente'],
             (float) $produit['cout_achat'],
-            (int) $produit['stock_initial'],
-            (int) $produit['stock_actuel'],
-            (int) $produit['seuil_alerte'],
+            (int) ($produit['stock_initial'] ?? 0),
+            (int) ($produit['stock_actuel'] ?? 0),
+            (int) ($produit['seuil_alerte'] ?? 0),
             (int) $produit['id']
         );
     }

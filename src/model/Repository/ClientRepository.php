@@ -2,50 +2,54 @@
 
 require_once dirname(__DIR__) . "/Entity/Client.php";
 
-class ClientRepository{
+class ClientRepository {
 
-    private PDO $pdo;
+    private static ?PDO $pdo = null;
 
-    public function __construct(){
+    private function __construct() {}
 
-        $this->pdo = Database::connexionDB();
+    private static function init(): void {
+        if (self::$pdo === null) {
+            self::$pdo = Database::connexionDB();
+        }
     }
-
     
-    public function insert(Client $client): int{
+    public static function insert(Client $client): int {
+        
+        self::init(); 
 
         $sql = "INSERT INTO client (nom, prenom, telephone, email, limite_credit)
                 VALUES(:nom, :prenom, :telephone, :email, :limite_credit)";
 
-        Database::executeUpdate($this->pdo, $sql, [
-            'nom' => $client->getNom(),
-            'prenom' => $client->getPrenom(),
-            'telephone' => $client->getTelephone(),
-            'email' => $client->getEmail(),
+        Database::executeUpdate(self::$pdo, $sql, [
+            'nom'           => $client->getNom(),
+            'prenom'        => $client->getPrenom(),
+            'telephone'     => $client->getTelephone(),
+            'email'         => $client->getEmail(),
             'limite_credit' => $client->getLimiteCredit()
         ]);
 
-        $id = (int) $this->pdo->lastInsertId();
+        $id = (int) self::$pdo->lastInsertId();
         $client->setId($id);
         
         return $id;
     }
 
    
-    public function selectById(int $id): ?Client{
+    public static function selectById(int $id): ?Client {
+        self::init();
 
         $sql = "SELECT * FROM client WHERE id = :id";
 
-        $client = Database::executeQuery($this->pdo, $sql, ['id' => $id]);
+        $client = Database::executeQuery(self::$pdo, $sql, ['id' => $id]);
 
         if (!$client) return null;
         
-        return $this->enObjet($client);
+        return self::enObjet($client);
     }
 
    
-       public function selectAll(): array{
-
+    public static function selectAll(): array {
         $tableauClients = Database::getAllTable('client');
 
         $clients = [];
@@ -55,16 +59,15 @@ class ClientRepository{
         }
         
         foreach ($tableauClients as $client) {
-            $clients[] = $this->enObjet($client);
+
+        $clients[] = self::enObjet($client);
         }
 
         return $clients;
     }
 
 
-    
-    private function enObjet(array $client): Client{
-
+    private static function enObjet(array $client): Client {
         return new Client(
             $client['nom'],
             $client['prenom'],

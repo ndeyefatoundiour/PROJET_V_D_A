@@ -4,60 +4,65 @@ require_once dirname(__DIR__) . "/Entity/Fournisseur.php";
 
 class FournisseurRepository {
 
-    private PDO $pdo;
+    private static ?PDO $pdo = null;
 
-    public function __construct(){
+    private function __construct() {}
 
-        $this->pdo = Database::connexionDB();
+    private static function init(): void {
+        if (self::$pdo === null) {
+            self::$pdo = Database::connexionDB();
+        }
     }
-
     
-    public function insert(Fournisseur $fournisseur): int{
+    public static function insert(Fournisseur $fournisseur): int {
+        self::init(); 
 
         $sql = "INSERT INTO fournisseur (nom, email, telephone, adresse)
                 VALUES(:nom, :email, :telephone, :adresse)";
 
-        Database::executeUpdate($this->pdo, $sql, [
+        Database::executeUpdate(self::$pdo, $sql, [
             'nom'       => $fournisseur->getNom(),
             'email'     => $fournisseur->getEmail(),
             'telephone' => $fournisseur->getTelephone(),
             'adresse'   => $fournisseur->getAdresse()
         ]);
 
-        $id = (int) $this->pdo->lastInsertId();
+        $id = (int) self::$pdo->lastInsertId();
         $fournisseur->setId($id);
+        
         return $id;
     }
 
-    
-    public function selectById(int $id): ?Fournisseur
-    {
+  
+    public static function selectById(int $id): ?Fournisseur {
+        self::init();
+
         $sql = "SELECT * FROM fournisseur WHERE id = :id";
-        $fournisseur = Database::executeQuery($this->pdo, $sql, ['id' => $id]);
+        $fournisseur = Database::executeQuery(self::$pdo, $sql, ['id' => $id]);
 
         if (!$fournisseur) return null;
         
-        return $this->enObjet($fournisseur);
+        return self::enObjet($fournisseur);
     }
 
-    
-    public function selectAll(): array
-    {
+
+    public static function selectAll(): array {
         $tableauFournisseurs = Database::getAllTable('fournisseur');
         $fournisseurs = [];
 
-        if (empty($tableauFournisseurs)) return $fournisseurs;
+        if (empty($tableauFournisseurs)) {
+            return $fournisseurs;
+        }
         
         foreach ($tableauFournisseurs as $fournisseur) {
-            $fournisseurs[] = $this->enObjet($fournisseur);
+            $fournisseurs[] = self::enObjet($fournisseur);
         }
 
         return $fournisseurs;
     }
 
-    
-    private function enObjet(array $fournisseur): Fournisseur
-    {
+   
+    private static function enObjet(array $fournisseur): Fournisseur {
         return new Fournisseur(
             $fournisseur['nom'],
             $fournisseur['email'] ?? null,
