@@ -6,6 +6,8 @@ require_once dirname(__DIR__) . "/Repository/DetteRepository.php";
 
 class VenteService {
 
+    private function __construct() {}
+
     public static function enregistrerVente(
         PDO $pdo, 
         string $numeroFacture, 
