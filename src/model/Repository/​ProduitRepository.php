@@ -63,6 +63,16 @@ class ProduitRepository {
         return $produits;
     }
 
+    public static function diminuerStock(int $produitId, int $quantite): void {
+        self::init();
+        $sql = "UPDATE produit SET stock_actuel = stock_actuel - :qte WHERE id = :produit_id";
+        Database::executeUpdate(self::$pdo, $sql, [
+            'qte'        => $quantite,
+            'produit_id' => $produitId
+        ]);
+    }
+
+
     private static function enObjet(array $produit): Produit {
         return new Produit(
             $produit['code'],
